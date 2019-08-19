@@ -1,8 +1,8 @@
-using System;
+using Microsoft.AspNetCore.Identity;
 
-namespace NamespaceName
+namespace Bakery.Models
 {
-    public class ClassName
+    public class ApplicationUser : IdentityUser
     {
 
     }
