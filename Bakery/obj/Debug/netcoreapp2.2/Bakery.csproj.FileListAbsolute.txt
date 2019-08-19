@@ -36,3 +36,5 @@
 /Users/Guest/Desktop/Sweet-and-Savory/Bakery/obj/Debug/netcoreapp2.2/Bakery.dll
 /Users/Guest/Desktop/Sweet-and-Savory/Bakery/obj/Debug/netcoreapp2.2/Bakery.pdb
 /Users/Guest/Desktop/Sweet-and-Savory/Bakery/obj/Debug/netcoreapp2.2/Bakery.csproj.CopyComplete
+/Users/Guest/Desktop/Sweet-and-Savory/Bakery/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Footer.g.cshtml.cs
+/Users/Guest/Desktop/Sweet-and-Savory/Bakery/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Header.g.cshtml.cs
