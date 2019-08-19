@@ -2978,6 +2978,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views/Shared/Footer.cshtml",
+      "TargetPath": "Views/Shared/Footer.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views/Flavors/Delete.cshtml",
       "TargetPath": "Views/Flavors/Delete.cshtml",
       "FileKind": "mvc"
@@ -2985,6 +2990,11 @@
     {
       "FilePath": "Views/Home/Index.cshtml",
       "TargetPath": "Views/Home/Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Shared/Header.cshtml",
+      "TargetPath": "Views/Shared/Header.cshtml",
       "FileKind": "mvc"
     },
     {
