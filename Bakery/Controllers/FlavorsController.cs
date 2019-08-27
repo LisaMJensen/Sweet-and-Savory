@@ -1,24 +1,33 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Bakery.Models;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Linq;
+using System.Collections.Generic;
+using Bakery.Models;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace Bakery.Controllers
 {
+    [Authorize]
     public class FlavorsController : Controller
     {
         private readonly BakeryContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public FlavorsController(BakeryContext db)
+        public FlavorsController(UserManager<ApplicationUser> userManager, BakeryContext db)
         {
+            _userManager = userManager;
             _db = db;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            List<Flavor> model = _db.Flavors.ToList();
-            return View(model);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            return View(_db.Flavors
+                .Where(x => x.User.Id == currentUser.Id).ToList());
         }
 
         public ActionResult Create()
@@ -27,15 +36,20 @@ namespace Bakery.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Flavor flavor)
+        public async Task<ActionResult> Create(Flavor flavor)
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            flavor.User = currentUser;
             _db.Flavors.Add(flavor);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
             var thisFlavor = _db.Flavors
                 .Include(flavor => flavor.Treats)
                 .ThenInclude(join => join.Treat)
@@ -43,8 +57,10 @@ namespace Bakery.Controllers
             return View(thisFlavor);
         }
 
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
             var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
             return View(thisFlavor);
         }
@@ -57,8 +73,10 @@ namespace Bakery.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
             var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
             return View(thisFlavor);
         }
