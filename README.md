@@ -11,7 +11,7 @@ _This web application allows registered users to add and track flavors and treat
 ## Setup/Installation Requirements
 
 * _Clone the following github repository to view the code https://github.com/LisaMJensen/Sweet-and-Savory  ._
-* _Run a migration using dotnet ef migrations add Initial, followed by dotnet ef database update   ._
+* _Through your terminal, cd into the Bakery directory, Run a migration using dotnet ef migrations add Initial, followed by dotnet ef database update   ._
 * _Through your terminal, use dotnet build followed by dotnet run .  ._
 * _View the web application at http://localhost:5000/  ._
 
